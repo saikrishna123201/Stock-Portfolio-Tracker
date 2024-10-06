@@ -1,0 +1,170 @@
+
+    def __init__(self, name, symbol, shares, purchase_price):
+        self.name = name
+        self.symbol = symbol
+        self.shares = shares
+        self.purchase_price = purchase_price
+        self.current_price = purchase_price
+
+    def update_price(self, new_price):
+        self.current_price = new_price
+
+    def stock_value(self):
+        return self.shares * self.current_price
+
+class Portfolio:
+    def __init__(self):
+        self.stocks = []
+
+    def add_stock(self, stock):
+        self.stocks.append(stock)
+
+    def remove_stock(self, symbol):
+        self.stocks = [stock for stock in self.stocks if stock.symbol != symbol]
+
+    def update_stock_price(self, symbol, new_price):
+        for stock in self.stocks:
+            if stock.symbol == symbol:
+                stock.update_price(new_price)
+
+    def portfolio_value(self):
+        return sum(stock.stock_value() for stock in self.stocks)
+
+    def display_portfolio(self):
+        print(f"{'Stock Name':<15}{'Symbol':<10}{'Shares':<10}{'Purchase Price':<20}{'Current Price':<15}{'Value'}")
+        print("=" * 80)
+        for stock in self.stocks:
+            print(f"{stock.name:<15}{stock.symbol:<10}{stock.shares:<10}{stock.purchase_price:<20}{stock.current_price:<15}{stock.stock_value()}")
+        print("=" * 80)
+        print(f"Total Portfolio Value: {self.portfolio_value()}")
+
+def main():
+    portfolio = Portfolio()
+
+    while True:
+        print("\nPortfolio Manager")
+        print("1. Add Stock")
+        print("2. Remove Stock")
+        print("3. Update Stock Price")
+        print("4. Display Portfolio")
+        print("5. Exit")
+        
+        choice = input("Choose an option: ")
+        
+        if choice == '1':
+            name = input("Enter stock name: ")
+            symbol = input("Enter stock symbol: ")
+            shares = int(input("Enter number of shares: "))
+            purchase_price = float(input("Enter purchase price per share: "))
+            stock = Stock(name, symbol, shares, purchase_price)
+            portfolio.add_stock(stock)
+            print(f"Added {shares} shares of {name} ({symbol}) to the portfolio.")
+
+        elif choice == '2':
+            symbol = input("Enter stock symbol to remove: ")
+            portfolio.remove_stock(symbol)
+            print(f"Removed stock with symbol {symbol} from the portfolio.")
+
+        elif choice == '3':
+            symbol = input("Enter stock symbol to update: ")
+            new_price = float(input("Enter the new price per share: "))
+            portfolio.update_stock_price(symbol, new_price)
+            print(f"Updated price of {symbol} to {new_price}.")
+
+        elif choice == '4':
+            portfolio.display_portfolio()
+
+        elif choice == '5':
+            print("Exiting the program.")
+            break
+
+        else:
+            print("Invalid option. Please try again.")
+
+if __name__ == "__main__":
+    main()
+class Stock:
+    def __init__(self, name, symbol, shares, purchase_price):
+        self.name = name
+        self.symbol = symbol
+        self.shares = shares
+        self.purchase_price = purchase_price
+        self.current_price = purchase_price
+
+    def update_price(self, new_price):
+        self.current_price = new_price
+
+    def stock_value(self):
+        return self.shares * self.current_price
+
+class Portfolio:
+    def __init__(self):
+        self.stocks = []
+
+    def add_stock(self, stock):
+        self.stocks.append(stock)
+
+    def remove_stock(self, symbol):
+        self.stocks = [stock for stock in self.stocks if stock.symbol != symbol]
+
+    def update_stock_price(self, symbol, new_price):
+        for stock in self.stocks:
+            if stock.symbol == symbol:
+                stock.update_price(new_price)
+
+    def portfolio_value(self):
+        return sum(stock.stock_value() for stock in self.stocks)
+
+    def display_portfolio(self):
+        print(f"{'Stock Name':<15}{'Symbol':<10}{'Shares':<10}{'Purchase Price':<20}{'Current Price':<15}{'Value'}")
+        print("=" * 80)
+        for stock in self.stocks:
+            print(f"{stock.name:<15}{stock.symbol:<10}{stock.shares:<10}{stock.purchase_price:<20}{stock.current_price:<15}{stock.stock_value()}")
+        print("=" * 80)
+        print(f"Total Portfolio Value: {self.portfolio_value()}")
+
+def main():
+    portfolio = Portfolio()
+
+    while True:
+        print("\nPortfolio Manager")
+        print("1. Add Stock")
+        print("2. Remove Stock")
+        print("3. Update Stock Price")
+        print("4. Display Portfolio")
+        print("5. Exit")
+        
+        choice = input("Choose an option: ")
+        
+        if choice == '1':
+            name = input("Enter stock name: ")
+            symbol = input("Enter stock symbol: ")
+            shares = int(input("Enter number of shares: "))
+            purchase_price = float(input("Enter purchase price per share: "))
+            stock = Stock(name, symbol, shares, purchase_price)
+            portfolio.add_stock(stock)
+            print(f"Added {shares} shares of {name} ({symbol}) to the portfolio.")
+
+        elif choice == '2':
+            symbol = input("Enter stock symbol to remove: ")
+            portfolio.remove_stock(symbol)
+            print(f"Removed stock with symbol {symbol} from the portfolio.")
+
+        elif choice == '3':
+            symbol = input("Enter stock symbol to update: ")
+            new_price = float(input("Enter the new price per share: "))
+            portfolio.update_stock_price(symbol, new_price)
+            print(f"Updated price of {symbol} to {new_price}.")
+
+        elif choice == '4':
+            portfolio.display_portfolio()
+
+        elif choice == '5':
+            print("Exiting the program.")
+            break
+
+        else:
+            print("Invalid option. Please try again.")
+
+if __name__ == "__main__":
+    main()
